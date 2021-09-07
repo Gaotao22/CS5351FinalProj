@@ -1,3 +1,4 @@
+
 # Client Implementation
 The front-end of DEVils-Scrum-Tool is created with Vue.js, so it requires an installation of nodejs.
 The project was developed using Vue CLI (@vue/cli). Open a new bash instance to run client:
@@ -35,3 +36,7 @@ Your client runs on http://localhost:9000/
 3. Login to heroku and create a new project
 4. Build locally, running `npm run build`
 5. Git add, commit and push to heroku master
+
+# CS5351FinalProj Main
+Final Project of CS5351 Software Engineering
+
