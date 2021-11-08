@@ -6,7 +6,7 @@ import ElementUI from 'element-ui'
 
 import ViewUI from 'view-design'
 
-这两个组件
+这两个组件要下载一下，npm终端下载就行
 
 ## Build Setup
 
