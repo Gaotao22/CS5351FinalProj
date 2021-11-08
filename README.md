@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+import ElementUI from 'element-ui'
+import ViewUI from 'view-design'
+这两个组件
+
 ## Build Setup
 
 ``` bash
