@@ -10,7 +10,7 @@ import (
 type Server struct {
 	port string
 	addr string
-	db   *connector.Database
+	sw   *connector.SqlWorker
 }
 
 var once sync.Once
@@ -19,18 +19,18 @@ var server *Server
 func GetServer() *Server {
 	once.Do(func() {
 		server = new(Server)
-		server.db = connector.GetDatabase()
+		server.sw = connector.GetSqlWorker()
 	})
 	return server
 }
 
 func (s *Server) Listen(port string) {
-	log.Println("start listen:", s.port)
+	log.Println("start listen:", port)
 	http.HandleFunc("/ping", pong)
-	log.Fatal(http.ListenAndServe(":"+s.port, nil))
+	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
 func pong(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("pong"))
-	server.db.Excute("select * from pingpong.....")
+	server.sw.QueryData("select * from pingpong.....")
 }

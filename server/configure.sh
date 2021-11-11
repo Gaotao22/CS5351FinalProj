@@ -1,8 +1,6 @@
-# add PRJROOT
-export PRJROOT=$(pwd)
-echo PROJROOT:
-echo $PRJROOT
-# add working directory to GOPATH for packge importing
-echo GOPATH:
-export GOPATH=$PRJROOT:$GOPATH
-echo $GOPATH
+# set GO111MODULE=off for easy compiling
+go env -w GO111MODULE=off
+
+# add current path to GOPATH
+echo export GOPATH=$(pwd):$GOPATH >> $HOME/.zshrc
+source $HOME/.zshrc 
