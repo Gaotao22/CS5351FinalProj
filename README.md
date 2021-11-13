@@ -11,6 +11,7 @@ import { BootstrapVue } from 'bootstrap-vue'
 这三个组件要下载一下，npm终端下载就行
 
 然后在main.js里面添加：
+
 import ElementUI from 'element-ui'
 
 import ViewUI from 'view-design'
