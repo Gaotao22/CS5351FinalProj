@@ -6,7 +6,30 @@ import ElementUI from 'element-ui'
 
 import ViewUI from 'view-design'
 
-这两个组件要下载一下，npm终端下载就行
+import { BootstrapVue } from 'bootstrap-vue'
+
+这三个组件要下载一下，npm终端下载就行
+
+然后在main.js里面添加：
+import ElementUI from 'element-ui'
+
+import ViewUI from 'view-design'
+
+import 'view-design/dist/styles/iview.css'
+
+import 'element-ui/lib/theme-chalk/index.css'
+
+import { BootstrapVue } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+
+Vue.use(ViewUI)
+
+Vue.use(ElementUI)
 
 ## Build Setup
 
