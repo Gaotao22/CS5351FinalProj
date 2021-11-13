@@ -7,6 +7,11 @@ import ElementUI from 'element-ui'
 import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import { BootstrapVue } from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
 
 Vue.use(ViewUI)
 Vue.use(ElementUI)

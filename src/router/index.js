@@ -3,6 +3,10 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import NewSprint from '@/components/NewSprint'
+// import SprintBacklog from '@/components/SprintBacklog'
+import Backlog from '@/components/Backlog'
+
 Vue.use(Router)
 
 export default new Router({
