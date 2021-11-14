@@ -4,5 +4,5 @@ import "server"
 
 func main() {
 	server := server.GetServer()
-	server.Listen("8999")
+	server.BindAndListen("8999")
 }

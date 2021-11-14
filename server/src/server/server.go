@@ -3,18 +3,18 @@ package server
 import (
 	"connector"
 	"log"
-	"net/http"
 	"sync"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Server struct {
-	port string
-	addr string
-	sw   *connector.SqlWorker
+	sw *connector.SqlWorker
 }
 
 var once sync.Once
 var server *Server
+var router = gin.Default()
 
 func GetServer() *Server {
 	once.Do(func() {
@@ -24,13 +24,43 @@ func GetServer() *Server {
 	return server
 }
 
-func (s *Server) Listen(port string) {
-	log.Println("start listen:", port)
-	http.HandleFunc("/ping", pong)
-	log.Fatal(http.ListenAndServe(":"+port, nil))
+func (s *Server) BindAndListen(port string) {
+	// method and url define here
+	router.GET("/someGet", getting)
+	router.POST("/somePost", posting)
+	router.PUT("/somePut", putting)
+	router.DELETE("/someDelete", deleting)
+	router.PATCH("/somePatch", patching)
+	router.HEAD("/someHead", head)
+	router.OPTIONS("/someOptions", options)
+	// run and listen
+	router.Run(":" + port)
 }
 
-func pong(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("pong"))
-	server.sw.QueryData("select * from pingpong.....")
+func getting(c *gin.Context) {
+	log.Println("getting...")
+}
+
+func posting(c *gin.Context) {
+	log.Println("posting...")
+}
+
+func putting(c *gin.Context) {
+	log.Println("putting...")
+}
+
+func deleting(c *gin.Context) {
+	log.Println("deleting...")
+}
+
+func patching(c *gin.Context) {
+	log.Println("patching...")
+}
+
+func head(c *gin.Context) {
+	log.Println("head...")
+}
+
+func options(c *gin.Context) {
+	log.Println("options...")
 }
