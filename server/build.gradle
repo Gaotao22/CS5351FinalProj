@@ -11,7 +11,7 @@ sourceCompatibility = '11'
 
 wrapper {
 	distributionType = Wrapper.DistributionType.ALL
-	gradleVersion = "6.3"
+	gradleVersion = "7.3"
 }
 
 repositories {

@@ -56,6 +56,8 @@ public class TaskService {
         newTask.setStory(pbiService.getPBIById(pbiId));
         // Now save the Task
         Task editedTask = taskRepository.save(newTask);
+        // Update pbi totaltime
+        pbiService.updatePBItotalTime(pbiId);
         // Return a task dto
         return new TaskDTO(editedTask);
     }

@@ -29,6 +29,12 @@ public class Task implements Serializable {
     @Column(name = "state", nullable = false)
     private int state;
 
+    // Jeremyleeee edit begin
+    @Column(name = "comtime", nullable = true)
+    private int comtime;
+
+    // Jeremyleeee edit end
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "pbi_id", referencedColumnName = "id")
     private PBI story;
@@ -43,6 +49,7 @@ public class Task implements Serializable {
     public Task(String description, int state) {
         this.description = description;
         this.state = state;
+        this.comtime = 0;
     }
 
     // Getters
@@ -66,6 +73,10 @@ public class Task implements Serializable {
         return issues;
     }
 
+    public int getComtime(){
+        return comtime;
+    }
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -87,6 +98,10 @@ public class Task implements Serializable {
         this.issues = issues;
     }
 
+    public void setComtime(int comtime) {
+        this.comtime = comtime;
+    }
+
     @Override
     public String toString() {
         return "Task [id="
@@ -95,6 +110,8 @@ public class Task implements Serializable {
                 + description
                 + ", state="
                 + state
+                + ", comtime="
+                + comtime
                 + ", pbi_id="
                 + story.getId()
                 + "]";

@@ -48,6 +48,10 @@ public class PBIService {
         } else { // If this is an epic, then no epic_id as foreign key
             newPBI.setEpic(null);
         } // Now save the PBI
+
+        // init totaltime
+        newPBI.setTotaltime(0);
+        System.out.printf("createPBI totaltime: %d", newPBI.getTotaltime());
         return pbiRepository.save(newPBI);
     }
 
@@ -61,6 +65,10 @@ public class PBIService {
         if (editedPBI.getIsEpic() == false) {
             pbiToUpdate.setEpic(this.getPBIById(editedPBI.getEpic().getId()));
         } // Now save the PBI
+
+        // update totaltime
+        pbiRepository.updateTotalTime(pbiToUpdate.getId());
+        System.out.printf("editPBI totaltime: %d", editedPBI.getTotaltime());
         return pbiRepository.save(pbiToUpdate);
     }
 
@@ -91,5 +99,9 @@ public class PBIService {
             }
             pbiRepository.save(editedPBI);
         }
+    }
+
+    public void updatePBItotalTime(Integer pbiId) {
+        pbiRepository.updateTotalTime(pbiId);
     }
 }

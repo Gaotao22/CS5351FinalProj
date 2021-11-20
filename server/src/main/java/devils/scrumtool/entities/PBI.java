@@ -37,6 +37,9 @@ public class PBI implements Serializable {
     @Column(name = "is_epic", nullable = false)
     private boolean isEpic;
 
+    @Column(name = "totaltime", nullable = true)
+    private Integer totaltime;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
@@ -60,13 +63,24 @@ public class PBI implements Serializable {
     private Set<Task> tasks;
 
     // Default Constructor
-    public PBI() {}
+    public PBI() {
+        this.totaltime = 0;
+    }
 
     public PBI(String title, String description, int priority, boolean isEpic) {
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.isEpic = isEpic;
+        this.totaltime = 0;
+    }
+
+    public PBI(String title, String description, int priority, boolean isEpic, Integer totaltime) {
+        this.title = title;
+        this.description = description;
+        this.priority = priority;
+        this.isEpic = isEpic;
+        this.totaltime = totaltime;
     }
 
     // Getters
@@ -110,6 +124,10 @@ public class PBI implements Serializable {
         return tasks;
     }
 
+    public int getTotaltime() {
+        return totaltime;
+    }
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -151,6 +169,10 @@ public class PBI implements Serializable {
         this.tasks = tasks;
     }
 
+    public void setTotaltime(Integer totaltime) {
+        this.totaltime = totaltime;
+    }
+
     @Override
     public String toString() {
         return "PBI [id="
@@ -163,6 +185,8 @@ public class PBI implements Serializable {
                 + priority
                 + ", is_epic="
                 + isEpic
+                + ", totaltime="
+                + totaltime
                 + ", project_id="
                 + project.getId()
                 + ", sprint_id="

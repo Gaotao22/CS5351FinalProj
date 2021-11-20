@@ -9,15 +9,17 @@ public class TaskDTO implements Serializable {
     private int id;
     private String description;
     private Integer state;
+    private Integer comtime;
     private Integer storyId;
 
     // Default Constructor
     public TaskDTO() {}
 
-    public TaskDTO(int id, String description, Integer state, Integer storyId) {
+    public TaskDTO(int id, String description, Integer state, Integer comtime, Integer storyId) {
         this.id = id;
         this.description = description;
         this.state = state;
+        this.comtime = comtime;
         this.storyId = storyId;
     }
 
@@ -26,6 +28,7 @@ public class TaskDTO implements Serializable {
         this.id = task.getId();
         this.description = task.getDescription();
         this.state = task.getState();
+        this.comtime = task.getComtime();
         this.storyId = task.getStory().getId();
     }
 
@@ -40,6 +43,10 @@ public class TaskDTO implements Serializable {
 
     public Integer getState() {
         return state;
+    }
+
+    public Integer getComtime() {
+        return comtime;
     }
 
     public Integer getStoryId() {
@@ -59,6 +66,10 @@ public class TaskDTO implements Serializable {
         this.state = state;
     }
 
+    public void setComtime(Integer comtime) {
+        this.comtime = comtime;
+    }
+
     public void setStoryId(Integer storyId) {
         this.storyId = storyId;
     }
@@ -71,6 +82,8 @@ public class TaskDTO implements Serializable {
                 + description
                 + ", state="
                 + state
+                + ", comtime="
+                + comtime
                 + ", storyId="
                 + storyId
                 + "]";
