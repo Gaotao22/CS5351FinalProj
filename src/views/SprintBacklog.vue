@@ -5,6 +5,12 @@
         <SprintHeader />
         <!--board-->
         <LoadStories v-on:getSprintStories="getSprintStories" ref="stories" />
+        <el-button
+            icon="el-icon-refresh-right"
+            v-on:click="Refresh()"
+            style="float:right;margin-top:-45px;"
+            circle
+        ></el-button>
         <hr />
         <div v-for="cur_story in currentStories" :key="cur_story.id" deck>
             <b-row>
@@ -114,7 +120,7 @@ export default {
                     if (response.data.serverErrorMessage) {
                         console.log(response.data.serverErrorMessage)
                     } else {
-                        console.log('task',response.data)
+                        console.log('task', response.data)
                         //self.tasks = response.data.tasks
                         let tempTodo = []
                         let tempDoing = []
@@ -204,6 +210,10 @@ export default {
         },
         editTask(taskList) {
             this.tasks = taskList
+        },
+        Refresh() {
+            this.currentStories = []
+            this.$refs.stories.getSprintStories()
         },
     },
     mounted() {

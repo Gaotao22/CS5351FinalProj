@@ -1,5 +1,5 @@
 <template>
-    <b-navbar id="second-nav" fixed="top" class="subnav">
+    <b-navbar id="second-nav" fixed="top" class="subnav" type="light">
         <b-navbar-nav v-if="logout_prop === true" class="mx-auto">
             <b-nav-item href="#home">
                 <p class="anchors"></p>
@@ -13,7 +13,7 @@
                 <p class="anchors"></p>
             </b-nav-item>
         </b-navbar-nav>
-        <b-navbar-nav v-if="logout_prop === false" class="mx-auto">
+        <b-navbar-nav v-if="logout_prop === false" class="mx-auto" >
             <b-nav-item
                 :to="{
                     name: 'OldSprints',
@@ -41,14 +41,24 @@
                 <p class="anchors">Product Backlog</p>
             </b-nav-item>
             <b-col></b-col>
-            <b-nav-item
+            <b-nav-item-dropdown  class="anchors" text="Meeting" toggle-class="text-light">
+                <b-nav-item
+                    :to="{
+                        name: 'Meeting',
+                        params: { id: $route.params.id },
+                    }"
+                >
+                    <p>Booking</p>
+                </b-nav-item>
+              <b-nav-item
                 :to="{
-                    name: 'Backlog',
-                    params: { id: $route.params.id },
-                }"
-            >
-                <p class="anchors">Meeting</p>
-            </b-nav-item>
+                        name: 'Meeting',
+                        params: { id: $route.params.id },
+                    }"
+              >
+                <p>Details</p>
+              </b-nav-item>
+            </b-nav-item-dropdown>
         </b-navbar-nav>
     </b-navbar>
 </template>
@@ -90,5 +100,10 @@ export default {
     padding-top: 4px;
     padding-bottom: 2px;
     line-height: 2px;
+}
+.menu {
+    width: 30px;
+    position: relative;
+    bottom: 0.5px;
 }
 </style>

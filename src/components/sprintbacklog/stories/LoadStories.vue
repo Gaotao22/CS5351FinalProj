@@ -26,13 +26,15 @@ export default {
     methods: {
         getSprintStories() {
             const self = this
-            console.log(this.$url +
-              '/users/' +
-              localStorage.getItem('userId') +
-              '/projects/' +
-              this.$route.params.id +
-              '/sprintStories?sprintId=' +
-              this.$route.params.sprintId,)
+            console.log(
+                this.$url +
+                    '/users/' +
+                    localStorage.getItem('userId') +
+                    '/projects/' +
+                    this.$route.params.id +
+                    '/sprintStories?sprintId=' +
+                    this.$route.params.sprintId
+            )
             axios
                 .get(
                     this.$url +
@@ -55,8 +57,8 @@ export default {
                         console.log(response.data.serverErrorMessage)
                     } else {
                         self.$emit('getSprintStories', response.data)
-                        console.log('故事',response.data)
-                        response.data.forEach(function(element){
+                        console.log('故事', response.data)
+                        response.data.forEach(function (element) {
                             console.log(element.priority)
                         })
                     }

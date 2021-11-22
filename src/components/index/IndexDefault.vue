@@ -8,14 +8,14 @@
                     height="100%"
                     width="100%"
                 >
-                    记得改文案！！！！！
+                    A scrum tool
                 </p>
                 <p
-                    style="float: left; font-size: 30px; font-weight: bold;"
+                    style="float: left; font-size: 10px; font-weight: bold;"
                     height="100%"
                     width="100%"
                 >
-                    改文案！！！！！！
+                    Enhancing the Agile approach to project management
                 </p>
             </div>
             <div class="img_box">
@@ -101,18 +101,18 @@ export default {
 }
 .word_box {
     width: 350px;
-    height: 350px;
+    height: 100px;
     background-color: #fff;
     border-radius: 3px;
     position: absolute;
-    left: 180px;
-    top: 300px;
+    left: 150px;
+    top: 250px;
 }
 .img_box {
-    width: 700px;
-    height: 600px;
+    width: 600px;
+    height: 500px;
     background-color: #fff;
-    right: 120px;
+    right: 80px;
     top: 80px;
     position: fixed;
 }

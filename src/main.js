@@ -8,6 +8,14 @@ import 'element-ui/lib/theme-chalk/index.css'
 import { BootstrapVue } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import dataV from '@jiaminghi/data-view'
+import '../static/css/reset.css'
+import $ from 'jquery'
+
+window.jQuery = $
+window.$ = $
+
+Vue.use(dataV)
 Vue.use(ElementUI)
 Vue.use(BootstrapVue)
 Vue.use(ViewUI)

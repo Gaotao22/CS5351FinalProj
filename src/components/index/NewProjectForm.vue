@@ -72,6 +72,7 @@ export default {
                 title: this.newTitle,
                 isDone: false,
                 deadlineDate: this.deadlineDate,
+                remaintime:470,
             }
             axios
                 .post(
@@ -94,6 +95,7 @@ export default {
                     }
                     if (response.data) {
                         self.$emit('newProject', response.data)
+                        console.log('新建project', response.data)
                     }
                 })
                 .catch(function (error) {

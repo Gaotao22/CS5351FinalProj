@@ -1,25 +1,29 @@
 <template>
-    <b-card :title="storyTime" class="mb-2 text-font">
+    <b-card img-top tag="article" class="mb-2">
         <b-row slot="header" style="padding-left: 15px;">
             <b-col>
-                <p> Finish Time</p>
+                <p>Finish Time</p>
             </b-col>
         </b-row>
+        <p class="card-text">
+            {{ storyTime }}
+        </p>
     </b-card>
 </template>
 
 <script>
+
 
 export default {
     name: 'UserStoryCard',
     props: {
         story: Object,
     },
-  data () {
+    data() {
         return {
-            storyTime: String(this.story.description),
-    }
-  },
+            storyTime: String(this.story.totaltime),
+        }
+    },
     methods: {
         addTask(newTask) {
             this.$emit('addTask', newTask)

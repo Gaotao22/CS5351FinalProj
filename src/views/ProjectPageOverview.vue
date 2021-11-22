@@ -72,6 +72,7 @@ export default {
                     title: '',
                     isDone: false,
                     deadlineDate: '',
+                    remaintime: 470,
                 },
                 currentSprintId: 0,
                 currentSprintNum: 0,

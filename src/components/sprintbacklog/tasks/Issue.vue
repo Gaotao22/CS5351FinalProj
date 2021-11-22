@@ -1,6 +1,6 @@
 <template>
     <div class="text-font">
-        <b-button @click="openModal()" variant="warning">
+        <b-button @click="openModal()" variant="warning"  size="sm">
             <img src="@/assets/issue.png" class="btn-img" />
             Issues ({{ Issues.length }})
         </b-button>

@@ -1,14 +1,12 @@
 <template>
-    <b-modal :id="modalId">
-      <b-jumbotron>
-            <b-button variant="success" @click="DrawBurn()"
-            >Draw Burn Chart</b-button>
-      </b-jumbotron>
+    <b-modal :id="modal-1">
+        <div style="height: 300px; width: 450px;">
+            <dv-charts :option="option" style="width: 100%; height: 100%;" />
+        </div>
     </b-modal>
 </template>
 
 <script>
-import * as d3 from 'd3'
 export default {
     name: 'BurnChart',
     props: {
@@ -17,134 +15,44 @@ export default {
     data() {
         return {
             appear: 1,
+            option: {},
         }
     },
     methods: {
-        changeAppear() {
-            this.appear = 0
+        initburnchart() {
+            this.option = {
+                title: {
+                    text: 'Burntdown Chart',
+                },
+                xAxis: {
+                    name: 'sprint',
+                    data: [
+                        'sprint1',
+                        'sprint2',
+                        'sprint3',
+                        'sprint4',
+                        'sprint5',
+                        'sprint6',
+                        'sprint7',
+                    ],
+                },
+                yAxis: {
+                    name: 'Left time',
+                    data: 'value',
+                },
+                series: [
+                    {
+                        data: [350, 320, 300, 250, 200, 180, 160],
+                        type: 'line',
+                    },
+                ],
+            }
         },
-        DrawBurn() {
-            // 图表的宽度和高度
-            var width = 600
-            var height = 600
-            // 预留给轴线的距离
-            var padding = { top: 50, right: 50, bottom: 50, left: 50 }
-            var dataset = [
-                [1, 400],
-                [2, 390],
-                [3, 321],
-                [4, 300],
-                [5, 245],
-                [6, 231],
-                [7, 115],
-                [8, 98],
-                [9, 65],
-                [10, 21],
-            ]
-            var dataset1 = [
-                [1, 400],
-                [10, 21],
-            ]
-            var max = d3.max(dataset, function (d) {
-                return d[1]
-            })
-            var xScale = d3
-                .scaleLinear()
-                .domain([1, 10])
-                .range([0, width - padding.left - padding.right])
-            var yScale = d3
-                .scaleLinear()
-                .domain([0, max])
-                .range([height - padding.top - padding.bottom, 0])
-            var svg = d3
-                .select('body')
-                .append('svg')
-                .attr('width', width + 'px')
-                .attr('height', height + 'px')
-            var xAxis = d3.axisBottom().scale(xScale)
-            var yAxis = d3.axisLeft().scale(yScale)
-            svg.append('g')
-                .attr('class', 'axis')
-                .attr(
-                    'transform',
-                    'translate(' +
-                        padding.left +
-                        ',' +
-                        (height - padding.bottom) +
-                        ')'
-                )
-                .call(xAxis)
-            svg.append('g')
-                .attr('class', 'axis')
-                .attr(
-                    'transform',
-                    'translate(' + padding.left + ',' + padding.top + ')'
-                )
-                .call(yAxis)
-            var linePath = d3
-                .line()
-                .x(function (d) {
-                    return xScale(d[0])
-                })
-                .y(function (d) {
-                    return yScale(d[1])
-                })
-            svg.append('g')
-                .append('path')
-                .attr('class', 'line-path')
-                .attr(
-                    'transform',
-                    'translate(' + padding.left + ',' + padding.top + ')'
-                )
-                .attr('d', linePath(dataset))
-                .attr('fill', 'none')
-                .attr('stroke-width', 3)
-                .attr('stroke', 'green')
-            svg.append('g')
-                .selectAll('circle')
-                .data(dataset)
-                .enter()
-                .append('circle')
-                .attr('r', 5)
-                .attr('transform', function (d) {
-                    return (
-                        'translate(' +
-                        (xScale(d[0]) + padding.left) +
-                        ',' +
-                        (yScale(d[1]) + padding.top) +
-                        ')'
-                    )
-                })
-                .attr('fill', 'green')
-            //对比线
-            svg.append('g')
-                .append('path')
-                .attr('class', 'line-path')
-                .attr(
-                    'transform',
-                    'translate(' + padding.left + ',' + padding.top + ')'
-                )
-                .attr('d', linePath(dataset1))
-                .attr('fill', 'none')
-                .attr('stroke-width', 3)
-                .attr('stroke', 'orange')
-            svg.append('g')
-                .selectAll('circle')
-                .data(dataset1)
-                .enter()
-                .append('circle')
-                .attr('r', 5)
-                .attr('transform', function (d) {
-                    return (
-                        'translate(' +
-                        (xScale(d[0]) + padding.left) +
-                        ',' +
-                        (yScale(d[1]) + padding.top) +
-                        ')'
-                    )
-                })
-                .attr('fill', 'orange')
-        },
+    },
+    created() {
+      console.log('xuanran')
+      this.initburnchart()
+
     },
 }
 </script>

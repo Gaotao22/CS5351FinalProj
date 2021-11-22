@@ -102,6 +102,7 @@ export default {
                 title: this.form.newTitle,
                 isDone: this.isDone,
                 deadlineDate: this.form.deadlineDate,
+                remaintime: 470,
             }
             axios
                 .put(

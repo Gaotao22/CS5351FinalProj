@@ -1,7 +1,6 @@
 <template>
     <b-col class="text-right">
-        <b-button @click="openModal()">
-            <img src="@/assets/edit.png" class="btn-img" />
+        <b-button @click="openModal()" size="sm">
             Edit
         </b-button>
         <b-modal v-model="modalShow" title="Edit" @ok="updateTask()">
@@ -45,6 +44,7 @@
 <script>
 import axios from 'axios'
 
+
 export default {
     name: 'EditTask',
     props: {
@@ -59,6 +59,8 @@ export default {
             updateTask_desc: '',
             modalShow: false,
             updateTask_comtime: '',
+            currentStories: [],
+            update_time:[],
         }
     },
     methods: {
@@ -100,8 +102,8 @@ export default {
                     if (response.data.serverErrorMessage) {
                         console.log(response.data.serverErrorMessage)
                     } else {
-                        console.log('我给你的edittask',data)
-                        console.log('你给我的edittask',response.data)
+                        console.log('我给你的edittask', data)
+                        console.log('你给我的edittask', response.data)
                         self.$emit('editTask', response.data)
                     }
                 })

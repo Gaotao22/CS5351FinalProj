@@ -77,6 +77,7 @@ export default {
                         id: this.currentEpicId,
                     },
                     id: element.id,
+                    totaltime: 0,
                 }
                 const self = this
                 axios
