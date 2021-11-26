@@ -39,4 +39,9 @@ public interface SprintRepository extends CrudRepository<Sprint, Integer> {
 
     @Transactional
     void deleteById(Integer sprintId);
+    
+    @Modifying
+    @Query(value = "UPDATE sprints SET storytime = (SELECT SUM(totaltime) FROM pbis, sprints WHERE pbis.sprint_id = sprints.id AND sprints.id = ?1) WHERE sprints.id = ?1", nativeQuery = true)
+    @Transactional
+    void updateSprintStoryTimeById(@Param("sprintId") Integer sprintId);
 }

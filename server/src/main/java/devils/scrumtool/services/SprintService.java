@@ -103,4 +103,9 @@ public class SprintService {
             sprintRepository.setMaxNumSprintToCurrentByProjectId(projectId, maxNumSprint);
         }
     }
+
+    public void updataSprintStoryTime(Integer sprintId) {
+        System.out.printf("updataSprintStoryTime, sprintId: %d\n", sprintId);
+        sprintRepository.updateSprintStoryTimeById(sprintId);
+    }
 }

@@ -85,4 +85,9 @@ public class ProjectController {
             @PathVariable Integer userId, @PathVariable Integer projectId) {
         return projectService.checkIfUserMemberOfProject(userId, projectId);
     }
+    @GetMapping("/users/{userId}/projects/{projectId}/remaintime")
+    public List<Integer> getProjectRemainTime(
+        @PathVariable Integer userId, @PathVariable Integer projectId) {
+        return projectService.getProjectRemainTime(userId, projectId);
+    }
 }

@@ -35,6 +35,7 @@ CREATE TABLE projects (
     id SERIAL PRIMARY KEY,
     title VARCHAR NOT NULL,
     is_done BOOLEAN NOT NULL,
+    remaintime INT,
     deadline_date DATE DEFAULT NULL
 );
 
@@ -68,6 +69,7 @@ CREATE TABLE sprints (
     plan TEXT DEFAULT NULL,
     is_current BOOLEAN NOT NULL,
     num_sprint INT DEFAULT NULL,
+    storytime INT,
     project_id INT NOT NULL REFERENCES projects(id)
 );
 

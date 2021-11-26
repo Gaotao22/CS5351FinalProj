@@ -39,6 +39,9 @@ public class Sprint implements Serializable {
     @Column(name = "num_sprint")
     private int numSprint;
 
+    @Column(name = "storytime")
+    private Integer storyTime;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_id", referencedColumnName = "id")
@@ -56,6 +59,15 @@ public class Sprint implements Serializable {
         this.goal = goal;
         this.plan = plan;
         this.isCurrent = isCurrent;
+        this.storyTime = 0;
+    }
+
+    public Sprint(Date deadlineDate, String goal, String plan, boolean isCurrent, Integer storyTime) {
+        this.deadlineDate = deadlineDate;
+        this.goal = goal;
+        this.plan = plan;
+        this.isCurrent = isCurrent;
+        this.storyTime = storyTime;
     }
 
     // Getters
@@ -91,6 +103,10 @@ public class Sprint implements Serializable {
         return pbis;
     }
 
+    public int getStoryTime() {
+        return storyTime;
+    }
+
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -124,6 +140,10 @@ public class Sprint implements Serializable {
         this.pbis = pbis;
     }
 
+    public void setStoryTime(Integer storyTime) {
+        this.storyTime = storyTime;
+    }
+
     @Override
     public String toString() {
         return "Sprint [id="
@@ -138,6 +158,8 @@ public class Sprint implements Serializable {
                 + isCurrent
                 + ", num_sprint="
                 + numSprint
+                + ", storyTime="
+                + storyTime
                 + ", project_id="
                 + project.getId()
                 + "]";

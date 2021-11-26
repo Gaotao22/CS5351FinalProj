@@ -116,4 +116,10 @@ public class ProjectService {
             return true;
         }
     }
+
+    public List<Integer> getProjectRemainTime(Integer userId, Integer projectId) {
+        // get all sprints my id in increased order
+        // get there storytime as output list
+        return projectRepository.getStoryTimesEachSprintByProjectId(projectId);
+    }
 }

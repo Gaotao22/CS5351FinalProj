@@ -51,7 +51,7 @@ public class PBIService {
 
         // init totaltime
         newPBI.setTotaltime(0);
-        System.out.printf("createPBI totaltime: %d", newPBI.getTotaltime());
+        System.out.printf("createPBI totaltime: %d\n", newPBI.getTotaltime());
         return pbiRepository.save(newPBI);
     }
 
@@ -103,5 +103,9 @@ public class PBIService {
 
     public void updatePBItotalTime(Integer pbiId) {
         pbiRepository.updateTotalTime(pbiId);
+        System.out.println("updateTotalTime done");
+        int sprintId = pbiRepository.getSprint_IdById(pbiId).getSprint().getId();
+        System.out.printf("get sprint id done, id: %d\n", sprintId);
+        sprintService.updataSprintStoryTime(sprintId);
     }
 }

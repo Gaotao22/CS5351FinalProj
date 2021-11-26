@@ -32,6 +32,9 @@ public class Project implements Serializable {
     @Column(name = "deadline_date")
     private Date deadlineDate;
 
+    @Column(name = "remaintime")
+    private Integer remainTime;
+
     @JsonIgnore
     @OneToMany(mappedBy = "project")
     private Set<User_has_Project> users;
@@ -55,6 +58,14 @@ public class Project implements Serializable {
         this.title = title;
         this.isDone = isDone;
         this.deadlineDate = deadlineDate;
+        this.remainTime = 0;
+    }
+
+    public Project(String title, boolean isDone, Date deadlineDate, Integer remaintime) {
+        this.title = title;
+        this.isDone = isDone;
+        this.deadlineDate = deadlineDate;
+        this.remainTime = remaintime;
     }
 
     // Getters
@@ -72,6 +83,10 @@ public class Project implements Serializable {
 
     public Date getDeadlineDate() {
         return deadlineDate;
+    }
+
+    public Integer getRemainTime() {
+        return remainTime;
     }
 
     public Set<User_has_Project> getUsers() {
@@ -107,6 +122,10 @@ public class Project implements Serializable {
         this.deadlineDate = deadlineDate;
     }
 
+    public void setRemainTime(Integer remaintime) {
+        this.remainTime = remaintime;
+    }
+
     public void setUsers(Set<User_has_Project> users) {
         this.users = users;
     }
@@ -133,6 +152,8 @@ public class Project implements Serializable {
                 + isDone
                 + ", deadline_date="
                 + deadlineDate
+                + ", remaintime="
+                + remainTime
                 + "]";
     }
 }

@@ -1,0 +1,96 @@
+Table users as U {
+    id int [pk]
+    email varchar
+    username varchar
+    firstname varchar
+    lastname varchar
+    password varchar
+    country varchar
+    job varchar
+    company varchar
+    description text
+    bio text
+    photo text
+    is_admin boolean
+    num_projects int
+}
+
+Table projects as PJ {
+    id int [pk]
+    title varchar
+    is_done boolean
+    deadline_date date
+}
+ 
+Table user_has_project as UHP{
+    user_id int
+    project_id INT
+    role varchar
+}
+
+Ref: UHP.user_id > U.id
+Ref: UHP.project_id > PJ.id
+
+Table notifications as N {
+    id int [pk]
+    project_id int
+    project_title varchar
+    role varchar
+    from_username varchar
+    to_user_email varchar
+    type varchar
+    message text
+}
+
+Ref: N.project_id > PJ.id
+Ref: N.from_username > U.username
+Ref: N.to_user_email > U.email
+
+
+
+Table sprints {
+    id int [pk]
+    deadline_date date
+    goal text
+    plan text
+    is_current boolean
+    num_sprint int
+    project_id int
+}
+
+Ref: sprints.project_id > PJ.id
+
+Table pbis {
+    id int [pk]
+    title varchar
+    description varchar
+    priority int
+    is_epic boolean
+    totaltime int
+    project_id int
+    sprint_id int
+    epic_id int
+}
+
+Ref: pbis.project_id > PJ.id
+Ref: pbis.sprint_id > sprints.id
+Ref: pbis.epic_id > pbis.id
+
+
+Table tasks {
+    id int [pk]
+    description varchar
+    state int
+    comtime int
+    pbi_id int
+}
+
+Ref: tasks.pbi_id > pbis.id
+
+Table issues {
+    id int [pk]
+    description varchar
+    task_id int
+}
+
+Ref: issues.task_id > tasks.id

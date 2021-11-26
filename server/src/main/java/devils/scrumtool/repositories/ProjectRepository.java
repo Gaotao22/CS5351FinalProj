@@ -25,6 +25,13 @@ public interface ProjectRepository extends CrudRepository<Project, Integer> {
     void archiveOrActivateProjectById(
             @Param("isDone") Boolean isDoneToBecome, @Param("id") Integer projectId);
 
+    @Query("SELECT max(s.numSprint) FROM Sprint s WHERE s.project.id = :projectId")
+    Integer getMaxNumSprintByProjectId(@Param("projectId") Integer projectId);
+    
+
+    @Query(value = "SELECT storytime FROM (SELECT * FROM sprints WHERE sprints.project_id = ?1) AS sp ORDER BY sp.id", nativeQuery = true)
+    List<Integer> getStoryTimesEachSprintByProjectId(@Param("projectId") Integer projectId);
+
     @Transactional
     void deleteById(Integer projectId);
 }
