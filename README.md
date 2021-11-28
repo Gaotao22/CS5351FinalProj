@@ -5,6 +5,10 @@ Final Project of CS5351 Software Engineering
 The front-end of DEVils-Scrum-Tool is created with Vue.js, so it requires an installation of nodejs.
 The project was developed using Vue CLI (@vue/cli). Open a new bash instance to run client:
 
+
+## front-end plugins
+    install Bootstrap,Element-ui,dataV,echarts,ViewUI
+    
 ## Project setup
     npm install
 
