@@ -7,7 +7,7 @@ The project was developed using Vue CLI (@vue/cli). Open a new bash instance to 
 
 
 ## front-end plugins
-    install Bootstrap,Element-ui,dataV,echarts
+    install Bootstrap,Element-ui,dataV,echarts,ViewUI
     
 ## Project setup
     npm install
