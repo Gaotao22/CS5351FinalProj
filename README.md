@@ -1,3 +1,5 @@
+# CS5351FinalProj
+Final Project of CS5351 Software Engineering
 
 # Client Implementation
 The front-end of DEVils-Scrum-Tool is created with Vue.js, so it requires an installation of nodejs.
@@ -37,6 +39,5 @@ Your client runs on http://localhost:9000/
 4. Build locally, running `npm run build`
 5. Git add, commit and push to heroku master
 
-# CS5351FinalProj Main
-Final Project of CS5351 Software Engineering
+
 
