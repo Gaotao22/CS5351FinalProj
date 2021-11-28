@@ -21,38 +21,6 @@
                 >
                 </el-pagination>
             </div>
-            <div id="resRoomInfo">
-                <h1>Booking Information</h1>
-                <ul>
-                    <li class="resRoomInfoItem">
-                        <span class="resRoomInfoItemTitle">Room Area：</span>
-                        {{ resRoomInfo.region }}
-                    </li>
-                    <li class="resRoomInfoItem">
-                        <span class="resRoomInfoItemTitle"
-                            >Meeting Room Name：</span
-                        >
-                        {{ resRoomInfo.roomName }}
-                    </li>
-                    <li class="resRoomInfoItem">
-                        <span class="resRoomInfoItemTitle">Booking Time：</span>
-                        {{ resRoomInfo.date }}
-                        <span v-if="resRoomInfo.week">（</span>
-                        {{ resRoomInfo.week }}
-                        <span v-if="resRoomInfo.week">）</span>
-                        {{ resRoomInfo.startTime }}
-                        <span v-if="resRoomInfo.startTime">——</span>
-                        {{ resRoomInfo.endTime }}
-                    </li>
-                    <li class="resRoomInfoItem">
-                        <span class="resRoomInfoItemTitle">User Name：</span>
-                        {{ resRoomInfo.user }}
-                    </li>
-                </ul>
-            </div>
-            <div id="resBtnWrap">
-                <el-button type="primary">BOOKING</el-button>
-            </div>
         </div>
     </div>
 </template>
@@ -99,6 +67,9 @@ export default {
     methods: {
         getRoomLst() {
             this.roomLst = getRoomLst().roomLst //传递会议室信息
+        },
+        submitRoomLst() {
+          console.log(this.roomLst)
         },
         getUserName() {
             this.userName = getUserName().userName

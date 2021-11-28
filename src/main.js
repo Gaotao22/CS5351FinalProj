@@ -11,6 +11,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import dataV from '@jiaminghi/data-view'
 import '../static/css/reset.css'
 import $ from 'jquery'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 window.jQuery = $
 window.$ = $

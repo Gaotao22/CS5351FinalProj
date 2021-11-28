@@ -63,7 +63,7 @@ export default {
                 project: {
                     id: 0,
                 },
-                storytime:0,
+                storyTime:0,
             },
             validDate: false,
             stories_options: [],

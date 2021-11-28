@@ -52,7 +52,7 @@
                 </b-nav-item>
               <b-nav-item
                 :to="{
-                        name: 'Meeting',
+                        name: 'Calendar',
                         params: { id: $route.params.id },
                     }"
               >

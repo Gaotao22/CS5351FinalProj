@@ -14,7 +14,7 @@ import SprintBacklog from '@/views/SprintBacklog'
 import Unauthorized from '@/views/Unauthorized'
 import PageNotFound from '@/views/PageNotFound'
 import Meeting from '@/views/Meeting'
-// import calendar from "@/scheduleCalendar/calendar";
+import Calendar from '@/views/Calendar'
 
 Vue.use(VueRouter)
 
@@ -43,6 +43,11 @@ const routes = [
         path: '/meeting',
         name: 'Meeting',
         component: Meeting,
+    },
+    {
+        path: '/detail',
+        name: 'Calendar',
+        component: Calendar,
     },
     {
         path: '/users/:username',

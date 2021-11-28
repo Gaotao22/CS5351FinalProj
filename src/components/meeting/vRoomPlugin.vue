@@ -180,19 +180,21 @@ export default {
                 curGrid.gridLst.forEach((grid, index) => {
                     if (grid.status === 2) grid.status = 0
                 })
-                this.$message({
-                    message: 'Room occupied！',
-                    type: 'warning',
-                })
+                // this.$message({
+                //     message: 'Room occupied！',
+                //     type: 'warning',
+                // })
                 this.hideMarkLine()
                 this.initResRoom()
                 this.initState()
                 return false
             } else {
                 if (index <= initStartIndex) {
+                    console.log('index',index)
                     curStartIndex = index
                     curEndIndex = initEndIndex
                 } else if (index >= initEndIndex) {
+                    console.log('index',index)
                     curEndIndex = index
                     curStartIndex = initStartIndex
                 }
@@ -234,7 +236,8 @@ export default {
                     //一行已选择的只有一个格子
                     startSelectIndex = null
                     endSelectIndex = null
-                    this.roomLst[key].gridLst[index].status = 0
+                    this.roomLst[key].gridLst[index].status = 1
+                    alert('book successfully')
                     this.hideMarkLine() //隐藏markLine
                 } else if (index === startSelectIndex) {
                     this.isMoving = false

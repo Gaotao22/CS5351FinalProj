@@ -23,30 +23,6 @@
         </b-jumbotron>
         <b-row v-if="numOfSprints > 0">
             <b-col class="text-right">
-                <!--                <b-button-->
-                <!--                    v-if="-->
-                <!--                        projectOverview.project.isDone === false &&-->
-                <!--                        teamRole() !== 'Developer'-->
-                <!--                    "-->
-                <!--                    size="lg"-->
-                <!--                    variant="success"-->
-                <!--                    class="m-md-3"-->
-                <!--                    v-b-modal.modal-1-->
-                <!--                >-->
-                <!--                    Burndown Chart-->
-                <!--                </b-button>-->
-                <!--                &lt;!&ndash;                <burntchart&ndash;&gt;-->
-                <!--                &lt;!&ndash;                    v-on:&ndash;&gt;-->
-                <!--                &lt;!&ndash;                    :modalId = "'burnt_chart'"&ndash;&gt;-->
-                <!--                &lt;!&ndash;                />&ndash;&gt;-->
-                <!--                <b-modal id="modal-1" title="BootstrapVue">-->
-                <!--                    <div style="height: 300px; width: 450px;">-->
-                <!--                        <dv-charts-->
-                <!--                            :option="option1"-->
-                <!--                            style="width: 100%; height: 100%;"-->
-                <!--                        />-->
-                <!--                    </div>-->
-                <!--                </b-modal>-->
                 <el-button
                     @click="drawer = true"
                     type="primary"
@@ -55,7 +31,11 @@
                 >
                     Burndown Chart
                 </el-button>
-                <el-drawer :visible.sync="drawer" :with-header="false">
+                <el-drawer
+                    v-if="drawer"
+                    :visible.sync="drawer"
+                    :with-header="false"
+                >
                     <dv-charts
                         :option="initburnchart()"
                         style="width: 100%; height: 100%;"
@@ -83,6 +63,9 @@
 
 <script>
 import axios from 'axios'
+import echarts from 'echarts'
+import Vue from 'vue'
+Vue.prototype.$echarts = echarts
 
 export default {
     name: 'NewSprintButton',
@@ -98,33 +81,7 @@ export default {
                     isDone: false,
                 },
             },
-            option1: {
-                title: {
-                    text: 'Burntdown Chart',
-                },
-                xAxis: {
-                    name: 'sprint',
-                    data: [
-                        'sprint1',
-                        'sprint2',
-                        'sprint3',
-                        'sprint4',
-                        'sprint5',
-                        'sprint6',
-                        'sprint7',
-                    ],
-                },
-                yAxis: {
-                    name: 'Left time',
-                    data: 'value',
-                },
-                series: [
-                    {
-                        data: [350, 320, 300, 250, 200, 180, 160],
-                        type: 'line',
-                    },
-                ],
-            },
+            option1: {},
         }
     },
     methods: {
@@ -159,15 +116,18 @@ export default {
         teamRole() {
             return localStorage.getItem('teamRole')
         },
-        initburnchart() {
-            axios
+        async getburnchart() {
+            let xaxis = []
+            let yaxis = []
+            let yaxis_length = 0
+            await axios
                 .get(
                     this.$url +
                         '/users/' +
                         localStorage.getItem('userId') +
                         '/projects/' +
                         this.$route.params.id +
-                        'remaintime',
+                        '/remaintime',
                     {
                         headers: {
                             Authorization:
@@ -180,42 +140,58 @@ export default {
                     if (response.data.editorErrorMessage) {
                         console.log(response.data.serverErrorMessage)
                     } else {
+                        // eslint-disable-next-line no-empty
+                        xaxis = new Array(response.data.length)
+                        yaxis = new Array(response.data.length)
+                        for (var i = 0; i < response.data.length; i++) {
+                            xaxis[i] = 'sprint' + String(i+1)
+                        }
                         console.log('你给我的燃尽图time', response.data)
-                        response.data.forEach(function(element) {
+                        response.data.forEach(function (element) {
                             console.log(element)
+                            if (yaxis_length > 0) {
+                                yaxis[yaxis_length] =
+                                    yaxis[yaxis_length - 1] - element
+                            } else {
+                                yaxis[yaxis_length] = 470 - element
+                            }
+                            yaxis_length = yaxis_length + 1
                         })
+                        console.log(xaxis)
+                        console.log(yaxis)
                     }
                 })
                 .catch(function (error) {
                     console.log(error)
                 })
-            return {
-                title: {
-                    text: 'Burntdown Chart',
-                },
-                xAxis: {
-                    name: 'sprint',
-                    data: [
-                        'sprint1',
-                        'sprint2',
-                        'sprint3',
-                        'sprint4',
-                        'sprint5',
-                        'sprint6',
-                        'sprint7',
-                    ],
-                },
-                yAxis: {
-                    name: 'Left time',
-                    data: 'value',
-                },
-                series: [
-                    {
-                        data: [350, 320, 300, 250, 200, 180, 160],
-                        type: 'line',
+            return { x: xaxis, y: yaxis }
+        },
+        initburnchart() {
+            console.log('1')
+            this.getburnchart().then((x) => {
+                console.log('2')
+                this.option1 = {
+                    title: {
+                        text: 'Burntdown Chart',
                     },
-                ],
-            }
+                    xAxis: {
+                        name: 'sprint',
+                        data: x['x'],
+                    },
+                    yAxis: {
+                        name: 'Left time',
+                        data: 'value',
+                    },
+                    series: [
+                        {
+                            data: x['y'],
+                            type: 'line',
+                        },
+                    ],
+                }
+                console.log('3')
+            })
+            return this.option1
         },
     },
     mounted() {
