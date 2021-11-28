@@ -1,5 +1,13 @@
 # CS5351FinalProj
 Final Project of CS5351 Software Engineering
+Team 9
+Members: Gao Tao 55884812
+Liu Bingyu 56879209
+Ma Yixin 56885228
+Wang Jihua 57016790
+Li Zemin 56841822
+Li Bowen 56849383
+Wang Zhihao 56961113
 
 # Client Implementation
 The front-end of DEVils-Scrum-Tool is created with Vue.js, so it requires an installation of nodejs.
